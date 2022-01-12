@@ -6,6 +6,8 @@ public class BallController : MonoBehaviour
 {
     public float inForce = 3.0f;
     public float forceOnBounce = 0.05f;
+    public ParticleSystem ps;
+
     private SpriteRenderer rend;
     private Color baseColor;
 
@@ -40,6 +42,7 @@ public class BallController : MonoBehaviour
     {
         rb.velocity = rb.velocity * (1 + forceOnBounce);
         rend.color = bouncedPole.GetComponent<SpriteRenderer>().color;
+        changePS(rend.color);
     }
 
     void restart()
@@ -47,7 +50,14 @@ public class BallController : MonoBehaviour
         transform.position = Vector2.zero;
         rb.velocity = Vector3.zero;
         rend.color = baseColor;
+        changePS(rend.color);
         StartCoroutine(startTimer());
+    }
+
+    void changePS(Color color)
+    {
+        var mainPar = ps.main;
+        mainPar.startColor = color;
     }
 
     IEnumerator startTimer()

@@ -17,6 +17,8 @@ public class PoleMoveController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3.0f, 3.0f));
+
         float v;
         if (!player2)
         {
@@ -28,6 +30,6 @@ public class PoleMoveController : MonoBehaviour
         }
 
 
-            rb.velocity = new Vector2(rb.velocity.x, v * speed);
+        rb.velocity = new Vector2(rb.velocity.x, v * speed);
     }
 }
