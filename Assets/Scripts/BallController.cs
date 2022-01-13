@@ -35,7 +35,10 @@ public class BallController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Border"))
+        {
             restart();
+            addScore();
+        }
     }
 
     private void bounce(GameObject bouncedPole)
@@ -43,6 +46,11 @@ public class BallController : MonoBehaviour
         rb.velocity = rb.velocity * (1 + forceOnBounce);
         rend.color = bouncedPole.GetComponent<SpriteRenderer>().color;
         changePS(rend.color);
+    }
+
+    void addScore()
+    {
+
     }
 
     void restart()
@@ -59,6 +67,8 @@ public class BallController : MonoBehaviour
         var mainPar = ps.main;
         mainPar.startColor = color;
     }
+
+
 
     IEnumerator startTimer()
     {
